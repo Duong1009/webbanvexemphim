@@ -10,7 +10,7 @@
     <!-- Bootstrap CSS v5.2.1 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
@@ -105,38 +105,7 @@
                 </div>
               </a>
             </div>
-          </div>
-          <div class="col-lg-3 col-md-6">
-            <div class="container course-item">
-              <a href="#" class="text-decoration-none text-dark">
-                <img src="../img/avengers2.jpg" width="270" height="400">  <!--poster phim-->
-                <div class="container course-detail p-0 mt-3">
-                  <h6 class="course-detail-title font-weight-bold">AVENGERS 2: Thời đại ULTRON</h6>
-                </div>
-              </a>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6">
-            <div class="container course-item">
-              <a href="#" class="text-decoration-none text-dark">
-                <img src="../img/Avengers3.jpg" width="270" height="400">  <!--poster phim-->
-                <div class="container course-detail p-0 mt-3">
-                  <h6 class="course-detail-title font-weight-bold">AVENGERS 3: Cuộc chiến vô cực</h6>
-                </div>
-              </a>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6">
-            <div class="container course-item">
-              <a href="#" class="text-decoration-none text-dark">
-                <img src="../img/avengers4.jpg" width="270" height="400"> <!--poster phim-->
-                <div class="container course-detail p-0 mt-3">
-                  <h6 class="course-detail-title font-weight-bold">AVENGERS 4: Hồi kết</h6>
-                </div>
-              </a>
-            </div>
-          </div>
-          
+          </div>          
         </div>
       </div>
     </div>
@@ -156,38 +125,7 @@
                 </div>
               </a>
             </div>
-          </div>
-          <div class="col-lg-3 col-md-6">
-            <div class="container course-item">
-              <a href="#" class="text-decoration-none text-dark">
-                <img src="../img/themarvels2.jpg" width="270" height="400">  <!--poster phim-->
-                <div class="container course-detail p-0 mt-3">
-                  <h6 class="course-detail-title font-weight-bold">Đại uý Marvel 2</h6>
-                </div>
-              </a>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6">
-            <div class="container course-item">
-              <a href="#" class="text-decoration-none text-dark">
-                <img src="../img/doctorstrange2.jpg" width="270" height="400">  <!--poster phim-->
-                <div class="container course-detail p-0 mt-3">
-                  <h6 class="course-detail-title font-weight-bold">Phù thuỷ tối thượng 3</h6>
-                </div>
-              </a>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6">
-            <div class="container course-item">
-              <a href="#" class="text-decoration-none text-dark">
-                <img src="../img/loki.jpg" width="270" height="400"> <!--poster phim-->
-                <div class="container course-detail p-0 mt-3">
-                  <h6 class="course-detail-title font-weight-bold">Loki 2</h6>
-                </div>
-              </a>
-            </div>
-          </div>
-          
+          </div>         
         </div>
       </div>
     </div>
