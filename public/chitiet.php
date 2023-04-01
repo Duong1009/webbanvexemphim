@@ -1,7 +1,7 @@
 <?php
 include '../src/connect.php';
-$contact = new exec();
-$movie -> $contact.getMovie();
+$contact = new Exec;
+$movie = $contact->getMovie(1);
 ?>
 
 <!doctype html>
@@ -75,7 +75,7 @@ $movie -> $contact.getMovie();
           <div class="col-lg-8">
             <div class="container my-5 p-5 border">
               <div class="row justify-content-center">
-                <img src="../img/endgame.jpg" height="400" width="100">
+                <img src="img/endgame.jpg" height="400" width="100">
               </div>
             </div>              
           </div>
@@ -83,30 +83,30 @@ $movie -> $contact.getMovie();
             <div class="ctkh-dathang-container container ms-5 w-75 p-0">
               <div class="container-fluid">
                 <h2 class="my-3">
-                  Biệt Đội Siêu anh Hùng 4: Hồi Kết
+                  <?=$movie['title']?>
                 </h2>
                 
                 <div class="ctkh-dathang-info">
                   <p class="fw-bold">Avengers: End game</p>
                   <span class="d-block ps-1">
                     <i class="fa-solid "></i>
-                    <p class="d-inline-block ms-1">Đạo diễn: Anthony Russo, Joe Russo</p>
+                    <p class="d-inline-block ms-1"><b>Đạo diễn: </b><?=$movie['actor']?></p>
                   </span>
                   <span class="d-block ps-1">
                     <i class="fa-solid"></i>
-                    <p class="d-inline-block ms-1">Thời lượng: 180 phút</p>
+                    <p class="d-inline-block ms-1"><b>Thời gian: </b><?=$movie['time']?></p>
                   </span>
                   <span class="d-block ps-1">
                     <i class="fa-solid"></i>
-                    <p class="d-inline-block ms-1">Năm phát hành: 2019</p>
+                    <p class="d-inline-block ms-1"><b>Năm phát hành: </b><?=$movie['year_release']?></p>
                   </span>
                   <span class="d-block ps-1">
                     <i class="fa-solid"></i>
-                    <p class="d-inline-block ms-1">Quốc gia: Âu Mỹ</p>
+                    <p class="d-inline-block ms-1"><b>Thể loại: </b><?=$movie['category']?></p>
                   </span>
                   <span class="d-block ps-1">
                     <i class="fa-solid"></i>
-                    <p class="d-inline-block ms-1">Thể loại: Phiêu Lưu - Hành Động</p>
+                    <p class="d-inline-block ms-1"><b>Quốc gia: </b><?=$movie['country']?></p>
                   </span>
                 </div>
                 <div class="d-grid gap-2 mb-4">
@@ -125,10 +125,7 @@ $movie -> $contact.getMovie();
                   Nội dung phim: 
                 </h2>
                 <p class="d-inline-block ms-1">
-                  <b>Biệt Đội Siêu Anh Hùng 4: Hồi Kết - Avengers: Endgame:</b> Cú búng tay của Thanos đã khiến toàn bộ dân số biến mất một nửa. 
-                  Các siêu anh hùng đánh mất bạn bè, người thân và đánh mất cả chính mình. Bộ sáu Avengers đầu tiên tứ tán. Iron Man kẹt lại ngoài không gian, 
-                  Hawkeye mất tích. Thor, Captain America, Hulk và Black Widow đều chìm trong nỗi đau vô tận vì mất đi những người thân yêu. Họ phải làm gì 
-                  để cứu vãn mọi chuyện ở Avengers: Hồi Kết? Điều khán giả quan tâm nhất hiện nay chính là ai sẽ còn sống và ai sẽ ra đi khi Avengers: Endgame kết thúc. 
+                  <b><?=$movie['title']?></b> <?=$movie['review']?> 
                 </p>
               </div>
 
