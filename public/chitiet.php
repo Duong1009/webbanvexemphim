@@ -1,73 +1,13 @@
 <?php
 include '../src/connect.php';
-$contact = new Exec;
-$movie = $contact->getMovie(1);
+include '../partials/header.php';
+
+$id = isset($_REQUEST['id']) ? filter_var($_REQUEST['id'], FILTER_SANITIZE_NUMBER_INT) : -1;
+$contact = new Movie;
+$movie = $contact->getMovie($id);
 ?>
 
-<!doctype html>
-<html lang="en">
-<head>
-    <title>Chi tiết</title>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS v5.2.1 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/style.css">
-    
-    <!-- font awesomes -->
-    <script src="https://kit.fontawesome.com/46bb43dd6b.js" crossorigin="anonymous"></script>
-</head>
-
-<body>
-  <header>
-    <nav class="navbar navbar-expand-md bg-light">
-        <div class="container-fluid pb-2" id="navContainer">
-          <a href="trangchu.html" class="navbar-brand">
-            <img src="../img/logo.jpg" alt="" height="80px" width="500px">
-          </a>
-          <button 
-            class="navbar-toggler" 
-            type="button" 
-            data-bs-toggle="collapse" 
-            data-bs-target="#collapsibleNavbar">
-              <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="collapsibleNavbar">
-            <ul class="navbar-nav me-auto">
-              <li class="nav-item">
-                <a class="nav-link" href="#">Đặt vé xem phim</a>
-              </li> 
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Danh mục phim</a>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Người Sắt (Iron man)</a></li>
-                  <li><a class="dropdown-item" href="#">Captain America: Kẻ báo thù đầu tiên</a></li>
-                  <li><a class="dropdown-item" href="#">Thần Sấm (Thor)</a></li>
-                  <li><a class="dropdown-item" href="#">Biệt đội siêu anh hùng (Avenger)</a></li>
-                </ul>
-              </li>
-            </ul>
-            <form action="" class="d-flex">
-                <div class="input-group me-1">
-                    <span class="input-group-text">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-                        </svg>
-                    </span>
-                    <input type="text" class="form-control" placeholder="Tìm phim">
-                </div>
-                
-                <a href="dangky.html"><button class="btn btn-outline-dark me-2" id="signin">Đăng&nbspký</button></a>
-                <a href="dangnhap.html"><button class="btn btn-dark" id="login">Đăng&nbspNhập</button></a>
-            </form>
-          </div>
-        </div>
-    </nav>
-    
-  </header>
   <main>
     <div class="container-fluid">
       <div class="container">
@@ -75,7 +15,7 @@ $movie = $contact->getMovie(1);
           <div class="col-lg-8">
             <div class="container my-5 p-5 border">
               <div class="row justify-content-center">
-                <img src="img/endgame.jpg" height="400" width="100">
+              <iframe width="560" height="315" src="https://www.youtube.com/embed/<?=$movie['idVideoReview']?>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
               </div>
             </div>              
           </div>
@@ -87,7 +27,6 @@ $movie = $contact->getMovie(1);
                 </h2>
                 
                 <div class="ctkh-dathang-info">
-                  <p class="fw-bold">Avengers: End game</p>
                   <span class="d-block ps-1">
                     <i class="fa-solid "></i>
                     <p class="d-inline-block ms-1"><b>Đạo diễn: </b><?=$movie['actor']?></p>
@@ -110,8 +49,10 @@ $movie = $contact->getMovie(1);
                   </span>
                 </div>
                 <div class="d-grid gap-2 mb-4">
-                  <button type="button" name="" id="" class="btn btn-dark text-white btn-addcart">Đặt vé ngay</button>
-                  
+                  <a href="" name="" id="" class="btn btn-dark text-white btn-addcart">Đặt vé ngay</a>
+                </div>
+                <div class="d-grid gap-2 mb-4">
+                  <a href="" name="" id="" class="btn btn-dark text-white btn-addcart">Thêm vào giỏ hàng</a>
                 </div>
               </div>
             </div>
@@ -182,17 +123,6 @@ $movie = $contact->getMovie(1);
     </div>
   </main>
   <!-- FOOTER -->
-  <footer>
-    <!-- place footer here -->
-    <div class="container-fluid bg-dark text-white p-5">
-      <div class="row justify-content-center align-items-center g-1 w-50">
-        
-        
-      </div>
-    </div>
-  </footer>
-
-
-</body>
-
-</html>
+<?php
+include '../partials/footer.php';
+?>
