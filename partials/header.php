@@ -11,11 +11,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS v5.2.1 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     
     <!-- font awesomes -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/46bb43dd6b.js" crossorigin="anonymous"></script>
 </head>
 
@@ -37,10 +36,10 @@
             <ul class="navbar-nav me-auto col">
               <?php if(isset($_COOKIE["username"]) && $_COOKIE["username"] == "admin"):?>
               <li class="nav-item">
-                <a class="nav-link" href="#">Quản lý phim</a>
+                <a class="nav-link text-dark" href="#">Quản lý phim</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Thêm phim</a>
+                <a class="nav-link text-dark" href="themphim.php">Thêm phim</a>
               </li>
               <?php endif?>
               </ul>
@@ -49,15 +48,16 @@
                 <a href="dangky.php" class="btn btn-outline-dark me-2" id="signin">Đăng&nbspký</a>
                 <a href="dangnhap.php" class="btn btn-dark" id="login">Đăng&nbspNhập</a>
                 <?php else:?>
-                  <a class="text-dark " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="float:right">
-                  <b class="m-2"> <?=htmlspecialchars($_COOKIE["username"])?></b> <img src="img/avt1.png" alt="" style="width:40px; height:40px; float:right" class="rounded">
                   
-                  </a>
-                  <ul class="dropdown-menu">
+                  <div class="nav-item dropdown">
+                  <a class="nav-link  text-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="float:right">
+                  <b class="m-2 "> <?=htmlspecialchars($_COOKIE["username"])?></b> <img src="img/avt1.png" alt="" style="width:40px; height:40px; float:right" class="rounded">
+                   </a>
+                   <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <li><a class="dropdown-item" href="#">Giỏ hàng của tôi</a></li>
-                    <li><a class="dropdown-item" href="#">Đăng xuất</a></li>
+                    <li><a class="dropdown-item" href="#" id="logout">Đăng xuất</a></li>
                   </ul>
-                  
+                  </div>
                 <?php endif ?>
               </div>
           </div>
@@ -65,3 +65,20 @@
     </nav>
     
   </header>
+
+  <script type="text/javascript"
+src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $("document").ready(function(){
+      $("#logout").click(function (){
+        console.log("logged out");
+        let setCookie = function (key, value, expiry) {
+        var expires = new Date();
+        expires.setTime(expires.getTime() + (expiry * 24 * 60 * 60 * 1000));
+        document.cookie = key + '=' + value + ';expires=' + expires.toUTCString();
+        }
+        setCookie("username","", -1);
+        location.reload();
+      })
+    })
+  </script>
