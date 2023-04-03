@@ -23,7 +23,7 @@
     <nav class="navbar navbar-expand-md bg-light">
         <div class="container-fluid pb-2" id="navContainer">
           <a href="trangchu.php" class="navbar-brand">
-            <img src="img/logo.jpg" alt="" height="80px" width="500px">
+            <img src="../img/logo.jpg" alt="" height="80px" width="500px">
           </a>
           <button 
             class="navbar-toggler" 
@@ -51,7 +51,7 @@
                   
                   <div class="nav-item dropdown">
                   <a class="nav-link  text-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="float:right">
-                  <b class="m-2 "> <?=htmlspecialchars($_COOKIE["username"])?></b> <img src="img/avt1.png" alt="" style="width:40px; height:40px; float:right" class="rounded">
+                  <b class="m-2 "> <?=htmlspecialchars($_COOKIE["username"])?></b> <img src="../img/avt1.png" alt="" style="width:40px; height:40px; float:right" class="rounded">
                    </a>
                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <li><a class="dropdown-item" href="#">Giỏ hàng của tôi</a></li>
@@ -73,9 +73,9 @@ src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
       $("#logout").click(function (){
         console.log("logged out");
         let setCookie = function (key, value, expiry) {
-        var expires = new Date();
-        expires.setTime(expires.getTime() + (expiry * 24 * 60 * 60 * 1000));
-        document.cookie = key + '=' + value + ';expires=' + expires.toUTCString();
+          var expires = new Date();
+          expires.setTime(expires.getTime() + (expiry * 24 * 60 * 60 * 1000));
+          document.cookie = key + '=' + value + ';expires=' + expires.toUTCString();
         }
         setCookie("username","", -1);
         location.reload();

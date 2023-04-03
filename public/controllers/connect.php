@@ -1,5 +1,5 @@
 <?php
-include 'connectDB.php';
+include '../model/connectDB.php';
 class Movie extends DB{
 
     private $db;

@@ -1,5 +1,5 @@
 <?php
-include '../src/connect.php';
+include '../controllers/connect.php';
 include '../partials/header.php';
 
 $movie = new Movie;
@@ -18,13 +18,13 @@ $allMovieShowSoon = $movie -> getMovieShowSoon();
       </ol>
       <div class="carousel-inner" role="listbox">
         <div class="carousel-item active">
-          <img src="img/Avengers3-poster.jpg" class="w-100 d-block" alt="First slide" height="400"> <!--Poster quang cao phim-->
+          <img src="../img/Avengers3-poster.jpg" class="w-100 d-block" alt="First slide" height="400"> <!--Poster quang cao phim-->
         </div>
         <div class="carousel-item">
-          <img src="img/civil_war.jpg" class="w-100 d-block" alt="Second slide" height="400">  <!--Poster quang cao phim-->
+          <img src="../img/civil_war.jpg" class="w-100 d-block" alt="Second slide" height="400">  <!--Poster quang cao phim-->
         </div>
         <div class="carousel-item">
-          <img src="img/endgame.jpg" class="w-100 d-block" alt="Third slide" height="400">  <!--Poster quang cao phim-->
+          <img src="../img/endgame.jpg" class="w-100 d-block" alt="Third slide" height="400">  <!--Poster quang cao phim-->
         </div>
       </div>
       <button class="carousel-control-prev" type="button" data-bs-target="#carouselId" data-bs-slide="prev">

@@ -1,13 +1,9 @@
-<?php include '../partials/header.php';
-    include '../src/connect.php';
-    $movie = new Movie;
-    if($_SERVER['REQUEST_METHOD'] == 'POST'){
-        $error = $movie->validate($_POST);
-        if(count($error) == 0){
-            $movie->save($_POST);
-        }
-    }
+<?php
+    include '../partials/header.php';
+    $id = isset($_REQUEST['id']) ? filter_var($_REQUEST['id'], FILTER_SANITIZE_NUMBER_INT) : -1;
+    
 ?>
+
 <div class="container mt-3">
 <form method="POST">
     <div class="row">

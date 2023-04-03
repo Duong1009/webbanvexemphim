@@ -1,6 +1,6 @@
 <?php
 include '../partials/header.php';
-include '../src/connect.php';
+include '../controllers/connect.php';
 
 $user = new User;
 

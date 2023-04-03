@@ -1,5 +1,5 @@
 <?php
-include '../src/connect.php';
+include '../controllers/connect.php';
 include '../partials/header.php';
 
 $id = isset($_REQUEST['id']) ? filter_var($_REQUEST['id'], FILTER_SANITIZE_NUMBER_INT) : -1;
