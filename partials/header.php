@@ -36,7 +36,7 @@
             <ul class="navbar-nav me-auto col">
               <?php if(isset($_COOKIE["username"]) && $_COOKIE["username"] == "admin"):?>
               <li class="nav-item">
-                <a class="nav-link text-dark" href="#">Quản lý phim</a>
+                <a class="nav-link text-dark" href="quanly.php">Quản lý phim</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link text-dark" href="themphim.php">Thêm phim</a>

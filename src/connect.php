@@ -23,6 +23,16 @@ class Movie extends DB{
             return $row;
         }
     }
+    public function all(){
+        $cnt = "select * from movie";
+        $stmt = $this->connect() -> prepare($cnt);
+        $stmt -> execute([]);
+        $list = array();
+        while($row = $stmt -> fetch()){
+            array_push($list, $row);
+        }
+        return $list;
+    }
     public function getMovieShowing(){
         $cnt = "select * from movie where type = ?";
         $stmt = $this->connect() -> prepare($cnt);
@@ -83,6 +93,12 @@ class Movie extends DB{
         $cnt = "INSERT INTO movie(title,actor,time,year_release, category, country, imgLink, idVideoReview, review, type) VALUES(?,?,?,?,?,?,?,?,?,?);";
         $stmt = $this->connect() -> prepare($cnt);
         $stmt->execute([$POST['title'],$POST['actor'],$POST['time'],$POST['year_release'],$POST['category'],$POST['country'],$POST['imgLink'],$POST['idVideoReview'], $POST['review'],$POST['type']]);
+    }
+
+    public function delete($id){
+        $cnt = "DELETE FROM movie WHERE id = ?";
+        $stmt = $this->connect() -> prepare($cnt);
+        $stmt->execute([$id]);
     }
 
 }
