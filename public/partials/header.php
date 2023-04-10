@@ -15,7 +15,7 @@
     
     <!-- font awesomes -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <script src="https://kit.fontawesome.com/46bb43dd6b.js" crossorigin="anonymous"></script>
+    <<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
@@ -66,19 +66,13 @@
     
   </header>
 
-  <script type="text/javascript"
-src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script type="text/javascript" src="../../libraries/jquery-3.6.4.js"></script>
+  <script type="text/javascript" src="../../libraries/jquery.cookie.min.js"></script>
   <script>
     $("document").ready(function(){
       $("#logout").click(function (){
-        console.log("logged out");
-        let setCookie = function (key, value, expiry) {
-          var expires = new Date();
-          expires.setTime(expires.getTime() + (expiry * 24 * 60 * 60 * 1000));
-          document.cookie = key + '=' + value + ';expires=' + expires.toUTCString();
-        }
-        setCookie("username","", -1);
-        location.reload();
+        <?php setcookie('test','ert',time() + 7200)?>
+        //location.reload();
       })
     })
   </script>

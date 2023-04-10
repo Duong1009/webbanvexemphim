@@ -153,4 +153,34 @@ class User extends DB{
 
 }
 
+class comment extends DB{
+    public function getComment($id){
+        $cnt = "SELECT * FROM comment WHERE idFilm = ?";
+        $stmt = $this->connect() -> prepare($cnt);
+        $stmt -> execute([$id]);
+        $list = array();
+        while($row = $stmt -> fetch()){
+            array_push($list, $row);
+        }
+        return $list;
+    }
+
+    public function count($id){
+        $cnt = "SELECT * FROM comment WHERE idFilm = ?";
+        $stmt = $this->connect() -> prepare($cnt);
+        $stmt -> execute([$id]);
+        $count = 0;
+        while($row = $stmt -> fetch()){
+            $count += 1;
+        }
+        return $count;
+    }
+
+    public function save($username, $comment, $idVideo){
+        $cnt = "INSERT INTO comment(username,comment,idFilm) VALUES (?,?,?)";
+        $stmt = $this->connect() -> prepare($cnt);
+        $stmt -> execute([$username,$comment,$idVideo]);
+    }
+}
+
 ?>

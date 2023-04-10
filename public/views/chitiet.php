@@ -5,6 +5,23 @@ include '../partials/header.php';
 $id = isset($_REQUEST['id']) ? filter_var($_REQUEST['id'], FILTER_SANITIZE_NUMBER_INT) : -1;
 $contact = new Movie;
 $movie = $contact->getMovie($id);
+
+$comment = new comment;
+$comments = $comment -> getComment($id);
+$count = $comment->count($id);
+function redirect($location)
+  {
+    header('Location: ' . $location);
+    exit();
+  }
+
+if($_SERVER['REQUEST_METHOD'] == 'POST'){
+  $cmt = $_POST['comment'];
+  $username = $_COOKIE["username"];
+  $idVideo = $id;
+  $comment -> save($username,$cmt,$idVideo);
+  redirect('chitiet.php?id='.$id);
+}
 ?>
 
 
@@ -13,10 +30,46 @@ $movie = $contact->getMovie($id);
       <div class="container">
         <div class="row justify-content-center align-items-start g-2">
           <div class="col-lg-8">
-            <div class="container my-5 p-5 border">
+            <div class="container my-5 ">
               <div class="row justify-content-center">
               <iframe width="560" height="315" src="https://www.youtube.com/embed/<?=$movie['idVideoReview']?>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
               </div>
+              <div class="row  align-items-start ">
+          <div class="col">
+            <div class="container ">
+              <div class="row ">
+                <h2 class="my-3">
+                  Nội dung phim: 
+                </h2>
+                <p class="d-inline-block ms-1">
+                  <b><?=$movie['title']?></b> <?=$movie['review']?> 
+                </p>
+              </div>
+            </div>
+              <div class="row">           
+                 
+                  <div class="p-3">  
+                  <p><?=$count?> bình luận</p>
+                  <img src="../img/avt1.png" alt="" style="width:40px; height:40px" class="rounded"> <b class="m-2 "> <?=htmlspecialchars($_COOKIE["username"])?></b>                  
+                  <form action="" class='mt-2' method="POST">
+                    <div class="row">
+                      <div class="col-11">
+                        <input type="text" placeholder="Nhập vào bình luận của bạn" class="border border-dark rounded-pill p-2" style="width:650px; height:40px" name="comment">
+                      </div>
+                      <div class="col-1">
+                      <button style="border:none; background-color: transparent" type="submit"><i class="fa fa-arrow-circle-right mt-2" style="font-size:24px"></i></button>
+                      </div>
+                    </div>
+                  </form>               
+                  <?php foreach ($cmt as $comments): ?>
+                   <b> <?=$cmt['username']?>:</b>
+                   <p><?=$cmt['comment']?></p>
+                  <?php endforeach?> 
+                  <??>
+                  </div>             
+              </div>         
+          </div>
+        </div>
             </div>              
           </div>
           <div class="ctkh-dathang col-lg-4 my-5">
@@ -58,67 +111,7 @@ $movie = $contact->getMovie($id);
             </div>
           </div>
         </div>
-        <div class="row justify-content-center align-items-start g-2">
-          <div class="col-lg-8">
-            <div class="container my-5 p-5 border">
-              <div class="row justify-content-center">
-                <h2 class="my-3">
-                  Nội dung phim: 
-                </h2>
-                <p class="d-inline-block ms-1">
-                  <b><?=$movie['title']?></b> <?=$movie['review']?> 
-                </p>
-              </div>
-
-            </div>
-            <div class="card">   
-              <div class="row">    
-                <div class="col-2">
-                  <img src="" width="70" class="rounded-circle mt-2">
-                </div>
-                  
-                <div class="col-10">    
-                  <div class="comment-box ml-2">     
-                    <h4>Thêm bình luận</h4>      
-                    <div class="rating"> 
-                      <input type="radio" name="rating" value="5" id="5"><label for="5">☆</label>
-                      <input type="radio" name="rating" value="4" id="4"><label for="4">☆</label> 
-                      <input type="radio" name="rating" value="3" id="3"><label for="3">☆</label>
-                      <input type="radio" name="rating" value="2" id="2"><label for="2">☆</label>
-                      <input type="radio" name="rating" value="1" id="1"><label for="1">☆</label>
-                    </div>
-                          
-                    <div class="comment-area">          
-                      <textarea class="form-control" placeholder="Nhập bình luận" rows="4"></textarea>
-                    </div>
-                    <div class="comment-btns mt-2">
-                      <div class="row">
-                        <div class="col-6">
-                          <div class="pull-left">
-                            <button class="btn btn-outline-dark btn-sm">Đóng</button>      
-                          </div>
-                        </div>
-                                  
-                        <div class="col-6">
-                          <div class="pull-right">
-                            <button class="btn btn-dark send btn-sm">Bình luận<i class="fa fa-long-arrow-right ml-1"></i></button>      
-                          </div>
-                        </div>
-                              
-                      </div>  
-                    </div>
-                      
-                      
-                  </div>
-                  
-                </div>
-              
-              
-              </div>
-    
-            </div>             
-          </div>
-        </div>
+        
       </div>
     </div>
   </main>
