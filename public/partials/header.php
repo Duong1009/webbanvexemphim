@@ -1,7 +1,3 @@
-<?php
-
-?>
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -15,7 +11,7 @@
     
     <!-- font awesomes -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
@@ -25,13 +21,6 @@
           <a href="trangchu.php" class="navbar-brand">
             <img src="../img/logo.jpg" alt="" height="80px" width="500px">
           </a>
-          <button 
-            class="navbar-toggler" 
-            type="button" 
-            data-bs-toggle="collapse" 
-            data-bs-target="#collapsibleNavbar">
-              <span class="navbar-toggler-icon"></span>
-          </button>
           <div class="collapse navbar-collapse row" id="collapsibleNavbar">
             <ul class="navbar-nav me-auto col">
               <?php if(isset($_COOKIE["username"]) && $_COOKIE["username"] == "admin"):?>

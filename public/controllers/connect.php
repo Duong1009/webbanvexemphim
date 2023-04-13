@@ -102,18 +102,13 @@ class Movie extends DB{
     }
 
     function findFilm ($id){
-        $text = '[';
-        $temp = (string)$id[0];
-        $text += '"' + $temp + '"';
-        for($i =1; $i < $id.length; $i++){
-            $temp = (string)$id[i];
-            $text += ',"' + $temp + '"';
-        }
-        $text += ']';
-        return $text;
-        $cnt = "SELECT * FROM movie WHERE id in ?";
+        $cnt = "SELECT * FROM movie WHERE id in (".implode(',', array_fill(0, count($id), '?')).")";
         $stmt = $this->connect() -> prepare($cnt);
-        $stmt->execute([$id]);
+        foreach ($id as $key => $i) {
+            $stmt->bindValue(($key+1), $i);
+        }
+    
+        $stmt->execute();
         $list = array();
         while($row = $stmt -> fetch()){
             array_push($list, $row);
@@ -121,6 +116,11 @@ class Movie extends DB{
         return $list;
     }
 
+    public function update($POST, $id){
+        $cnt = "UPDATE movie SET title = ?, actor = ?, time = ?, year_release = ?, category = ?,country = ?,imgLink = ?,idVideoReview = ?,review = ?, type = ? WHERE id = ?";
+        $stmt = $this->connect() -> prepare($cnt);
+        $stmt->execute([$POST['title'],$POST['actor'],$POST['time'],$POST['year_release'],$POST['category'],$POST['country'],$POST['imgLink'],$POST['idVideoReview'], $POST['review'],$POST['type'], $id]);
+    }
 }
 
 class User extends DB{
