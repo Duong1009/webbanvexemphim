@@ -6,21 +6,27 @@ $id = isset($_REQUEST['id']) ? filter_var($_REQUEST['id'], FILTER_SANITIZE_NUMBE
 $contact = new Movie;
 $movie = $contact->getMovie($id);
 
-$comment = new comment;
+$comment = new Comment;
 $comments = $comment -> getComment($id);
 $count = $comment->count($id);
+
+$cart = new Cart;
 function redirect($location)
   {
     header('Location: ' . $location);
     exit();
   }
 
-if($_SERVER['REQUEST_METHOD'] == 'POST'){
+if($_SERVER['REQUEST_METHOD'] == 'POST' and isset($_POST['comment'])){
   $cmt = $_POST['comment'];
   $username = $_COOKIE["username"];
   $idVideo = $id;
   $comment -> save($username,$cmt,$idVideo);
   redirect('chitiet.php?id='.$id);
+}
+
+if($_SERVER['REQUEST_METHOD'] == 'POST' and isset($_POST['cart'])){
+  $cart -> addFilmToCart($id, $_COOKIE['username']);
 }
 ?>
 
@@ -128,7 +134,10 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                   <a href="" name="" id="" class="btn btn-dark text-white btn-addcart">Đặt vé ngay</a>
                 </div>
                 <div class="d-grid gap-2 mb-4">
-                  <button href="" name="" id="cart" class="btn btn-dark text-white btn-addcart">Thêm vào giỏ hàng</button>
+                  <form action="" method="POST">
+                    <input type="text" value="yes" name="cart" hidden>
+                    <button type="submit" href="" name="" id="cart" class="btn btn-dark text-white btn-addcart">Thêm vào giỏ hàng</button>
+                  </form>
                 </div>
               </div>
             </div>

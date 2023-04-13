@@ -101,6 +101,26 @@ class Movie extends DB{
         $stmt->execute([$id]);
     }
 
+    function findFilm ($id){
+        $text = '[';
+        $temp = (string)$id[0];
+        $text += '"' + $temp + '"';
+        for($i =1; $i < $id.length; $i++){
+            $temp = (string)$id[i];
+            $text += ',"' + $temp + '"';
+        }
+        $text += ']';
+        return $text;
+        $cnt = "SELECT * FROM movie WHERE id in ?";
+        $stmt = $this->connect() -> prepare($cnt);
+        $stmt->execute([$id]);
+        $list = array();
+        while($row = $stmt -> fetch()){
+            array_push($list, $row);
+        }
+        return $list;
+    }
+
 }
 
 class User extends DB{
@@ -153,7 +173,7 @@ class User extends DB{
 
 }
 
-class comment extends DB{
+class Comment extends DB{
     public function getComment($id){
         $cnt = "SELECT * FROM comment WHERE idFilm = ?";
         $stmt = $this->connect() -> prepare($cnt);
@@ -220,6 +240,27 @@ class comment extends DB{
         $cnt = "UPDATE comment SET numDislike = ? WHERE id = ?";
         $stmt = $this->connect() -> prepare($cnt);
         $stmt -> execute([$count,$id]);
+    }
+
+}
+
+class Cart extends DB{
+    public function addFilmToCart($idFilm, $username){
+        $cnt = "INSERT INTO cart(idFilm, username) VALUES (?, ?)";
+        $stmt = $this->connect() -> prepare($cnt);
+        $stmt -> execute([$idFilm, $username]);
+    }
+
+    public function findCartFollowUsername($username){
+        $cnt = "SELECT idFilm FROM cart WHERE username = ?";
+        $stmt = $this->connect() -> prepare($cnt);
+        $stmt -> execute([$username]);
+        $list = array();
+        while($row = $stmt -> fetch()){
+            array_push($list, $row['idFilm']);
+        }
+        return $list;
+
     }
 }
 

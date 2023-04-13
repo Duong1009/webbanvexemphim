@@ -51,10 +51,11 @@
                   
                   <div class="nav-item dropdown">
                   <a class="nav-link  text-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="float:right">
-                  <b class="m-2 "> <?=htmlspecialchars($_COOKIE["username"])?></b> <img src="../img/avt1.png" alt="" style="width:40px; height:40px; float:right" class="rounded">
-                   </a>
+                  <b class="m-2 "> <?=htmlspecialchars($_COOKIE["username"])?></b> <img src="../img/avt1.png" alt="" style="width:40px; height:40px; float:right" class="rounded"></a>                 
+                
+                  <a href="cart.php" class="text-dark"><i class="fa fa-shopping-cart mt-3" style="float:right"></i></a>
+                  
                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="#">Giỏ hàng của tôi</a></li>
                     <li><a class="dropdown-item" href="#" id="logout">Đăng xuất</a></li>
                   </ul>
                   </div>
