@@ -50,22 +50,45 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                  
                   <div class="p-3">  
                   <p><?=$count?> bình luận</p>
+                  <?php if(isset($_COOKIE['username'])): ?>
                   <img src="../img/avt1.png" alt="" style="width:40px; height:40px" class="rounded"> <b class="m-2 "> <?=htmlspecialchars($_COOKIE["username"])?></b>                  
                   <form action="" class='mt-2' method="POST">
                     <div class="row">
                       <div class="col-11">
                         <input type="text" placeholder="Nhập vào bình luận của bạn" class="border border-dark rounded-pill p-2" style="width:650px; height:40px" name="comment">
+                        <input type="text" value='<?=$time?>' name='date' hidden>
                       </div>
                       <div class="col-1">
                       <button style="border:none; background-color: transparent" type="submit"><i class="fa fa-arrow-circle-right mt-2" style="font-size:24px"></i></button>
                       </div>
                     </div>
-                  </form>               
-                  <?php foreach ($cmt as $comments): ?>
-                   <b> <?=$cmt['username']?>:</b>
-                   <p><?=$cmt['comment']?></p>
+                  </form>      
+                  <?php else: ?>
+                    <h2>Đăng nhập để bình luận</h2>
+                  <?php endif?>    
+                  <?php if(count($comments) > 0):?>                    
+                  <?php foreach ($comments as $cmt): ?>
+                    <div class="comment mt-3">
+                      <b> <?=$cmt['username']?></b> <?= $cmt['timeCreated']?>
+                      <p style="margin-bottom: 0px"><?=$cmt['comment']?></p>
+                      <i class="fa fa-thumbs-o-up mx-2" id="like"><data value= <?=$cmt['id']?>></data></i> 
+                      <?php 
+                      $numLike = $comment -> countLike($cmt['id']);
+                      if ($numLike > 0) :
+                        echo $numLike;
+                      endif;
+                      ?>
+
+                      <i class="fa fa-thumbs-o-down mx-2" id="dislike"><data value= <?=$cmt['id']?>></data></i> 
+                      <?php 
+                      $numDislike = $comment -> countDislike($cmt['id']);
+                      if ($numDislike > 0) :
+                        echo $numDislike;
+                      endif;
+                      ?>
+                    </div>
                   <?php endforeach?> 
-                  <??>
+                  <?php endif?>
                   </div>             
               </div>         
           </div>
@@ -105,7 +128,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                   <a href="" name="" id="" class="btn btn-dark text-white btn-addcart">Đặt vé ngay</a>
                 </div>
                 <div class="d-grid gap-2 mb-4">
-                  <a href="" name="" id="" class="btn btn-dark text-white btn-addcart">Thêm vào giỏ hàng</a>
+                  <button href="" name="" id="cart" class="btn btn-dark text-white btn-addcart">Thêm vào giỏ hàng</button>
                 </div>
               </div>
             </div>
@@ -119,3 +142,44 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 <?php
 include '../partials/footer.php';
 ?>
+<script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+<script>
+  $(document).ready(function() {
+    $('#like').click(function(){
+      let idComment = parseInt($('#like data').val(), 10)
+      console.log(typeof(idComment))
+      $.ajax({
+        type: "POST",
+        url:"like.php",
+        data: {idComment:idComment},
+        success: function(response) {
+					console.log(response);
+        }
+      }).done(function(){
+        location.reload();
+      })
+      
+    })
+
+    $('#dislike').click(function(){
+      let idComment = parseInt($('#dislike data').val(), 10)
+      console.log(typeof(idComment))
+      $.ajax({
+        type: "POST",
+        url:"dislike.php",
+        data: {idComment:idComment},
+        success: function(response) {
+					console.log(response);
+        }
+      }).done(function(){
+        location.reload();
+      })
+      
+    })
+
+    $("#cart").click(function(){
+      
+    })
+  })
+</script>

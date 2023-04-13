@@ -181,6 +181,46 @@ class comment extends DB{
         $stmt = $this->connect() -> prepare($cnt);
         $stmt -> execute([$username,$comment,$idVideo]);
     }
+
+    public function increaseLike($id){
+        $cnt = 'SELECT numLike FROM comment WHERE id = ?';
+        $stmt = $this->connect() -> prepare($cnt);
+        $stmt -> execute([$id]);
+        $arr = $stmt ->fetch();
+        $count = $arr['numLike'];
+        $count += 1;
+        $cnt = "UPDATE comment SET numLike = ? WHERE id = ?";
+        $stmt = $this->connect() -> prepare($cnt);
+        $stmt -> execute([$count,$id]);
+    }
+
+    public function countLike($id){
+        $cnt = "SELECT numLike FROM comment WHERE id = ?";
+        $stmt = $this->connect() -> prepare($cnt);
+        $stmt -> execute([$id]);
+        $arr = $stmt ->fetch();
+        return $arr['numLike'];
+    }
+
+    public function countDislike($id){
+        $cnt = "SELECT numDislike FROM comment WHERE id = ?";
+        $stmt = $this->connect() -> prepare($cnt);
+        $stmt -> execute([$id]);
+        $arr = $stmt ->fetch();
+        return $arr['numDislike'];
+    }
+
+    public function increaseDislike($id){
+        $cnt = 'SELECT numDislike FROM comment WHERE id = ?';
+        $stmt = $this->connect() -> prepare($cnt);
+        $stmt -> execute([$id]);
+        $arr = $stmt ->fetch();
+        $count = $arr['numDislike'];
+        $count += 1;
+        $cnt = "UPDATE comment SET numDislike = ? WHERE id = ?";
+        $stmt = $this->connect() -> prepare($cnt);
+        $stmt -> execute([$count,$id]);
+    }
 }
 
 ?>

@@ -71,7 +71,15 @@
   <script>
     $("document").ready(function(){
       $("#logout").click(function (){
-        <?php setcookie('test','ert',time() + 7200)?>
+       $.ajax({
+        type: "POST",
+        url:"logout.php",
+        success: function(response) {
+					console.log(response);
+        }
+       }).done(function(){
+        location.reload();
+      })
         //location.reload();
       })
     })
