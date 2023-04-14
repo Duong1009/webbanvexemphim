@@ -131,12 +131,12 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' and isset($_POST['cart'])){
                   </span>
                 </div>
                 <div class="d-grid gap-2 mb-4">
-                  <a href="" name="" id="" class="btn btn-dark text-white btn-addcart">Đặt vé ngay</a>
+                  <a href="ghexemphim.php" name="" id="" class="btn btn-dark text-white btn-addcart">Đặt vé ngay</a>
                 </div>
                 <div class="d-grid gap-2 mb-4">
                   <form action="" method="POST">
                     <input type="text" value="yes" name="cart" hidden>
-                    <button type="submit" href="" name="" id="cart" class="btn btn-dark text-white btn-addcart">Thêm vào giỏ hàng</button>
+                    <button type="submit" href="" name="" id="cart" class="btn btn-dark text-white btn-addcart"style="width:100%">Thêm vào giỏ hàng</button>
                   </form>
                 </div>
               </div>

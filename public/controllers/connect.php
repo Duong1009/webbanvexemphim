@@ -267,6 +267,7 @@ class Cart extends DB{
         $stmt = $this->connect() -> prepare($cnt);
         $stmt -> execute([$id]);
     }
+
 }
 
 ?>
