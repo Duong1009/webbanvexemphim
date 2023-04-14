@@ -106,8 +106,7 @@ class Movie extends DB{
         $stmt = $this->connect() -> prepare($cnt);
         foreach ($id as $key => $i) {
             $stmt->bindValue(($key+1), $i);
-        }
-    
+        }    
         $stmt->execute();
         $list = array();
         while($row = $stmt -> fetch()){
@@ -261,6 +260,12 @@ class Cart extends DB{
         }
         return $list;
 
+    }
+
+    public function deleteCart($id){
+        $cnt = "DELETE FROM cart WHERE idFilm = ?";
+        $stmt = $this->connect() -> prepare($cnt);
+        $stmt -> execute([$id]);
     }
 }
 
