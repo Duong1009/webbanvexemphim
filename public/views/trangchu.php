@@ -66,7 +66,7 @@ $lenSoon = $movie -> countSoon();
       </div>
       <div class="container my-3">
       <div class="row justify-content-center align-items-center">
-        <?php $len = round($lenShowing / 3);?>
+        <?php $len = ceil($lenShowing / 3);?>
         <?php for($i = 0; $i < $len; $i++):?>
           <?php if($id == $i + 1 ):?>
             <a class="btn btn-dark m-2" href="trangchu.php?id=<?=$i + 1?>" style="width:50px"><?=$i + 1?></a>
@@ -101,7 +101,7 @@ $lenSoon = $movie -> countSoon();
     </div>
     <div class="container my-3">
       <div class="row justify-content-center align-items-center">
-        <?php $len = round($lenSoon / 3);?>
+        <?php $len = ceil($lenSoon / 3); ?>
         <?php for($i = 0; $i < $len; $i++):?>
           <?php if($idSoon == $i + 1 ):?>
             <a class="btn btn-dark m-2" href="trangchu.php?idSoon=<?=$i + 1?>" style="width:50px"><?=$i + 1?></a>

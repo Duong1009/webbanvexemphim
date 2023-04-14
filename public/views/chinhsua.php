@@ -60,11 +60,7 @@
         </div>
         <div class="col-2 ">
             <label for="type" ><b>Loại phim:</b></label>
-            <select class="form-select" aria-label="Default select example" name="type" id="type">
-                <option selected><b>Loại phim</b></option>
-                <option value="1">đang chiếu</option>
-                <option value="0">sắp chiếu</option>
-            </select>
+            <input type="text" class="form-control border border-dark rounded-pill" placeholder="Nhập vào loại phim" aria-label="type" id="type" name="type" value='<?=$movie['type']?>'>
             
         </div>
         <div class="row mt-2">

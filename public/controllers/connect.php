@@ -17,7 +17,7 @@ class Movie extends DB{
 
 
     public function countShowing(){
-        $cnt = "SELECT * FROM movie WHERE type = ?";
+        $cnt = "SELECT * FROM movie WHERE type = ? and deleted =0";
         $stmt = $this->connect() -> prepare($cnt);
         $stmt -> execute([1]);
         $count = 0;
@@ -27,7 +27,7 @@ class Movie extends DB{
         return $count;
     }
     public function countSoon(){
-        $cnt = "SELECT * FROM movie WHERE type = ?";
+        $cnt = "SELECT * FROM movie WHERE type = ? and deleted =0";
         $stmt = $this->connect() -> prepare($cnt);
         $stmt -> execute([0]);
         $count = 0;
