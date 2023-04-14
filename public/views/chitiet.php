@@ -130,8 +130,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' and isset($_POST['cart'])){
                     <p class="d-inline-block ms-1"><b>Quốc gia: </b><?=$movie['country']?></p>
                   </span>
                 </div>
-                <div class="d-grid gap-2 mb-4">
-                  <a href="ghexemphim.php" name="" id="" class="btn btn-dark text-white btn-addcart">Đặt vé ngay</a>
+                <?php if(isset($_COOKIE['username'])):?>
+                <div class="d-grid gap-2 mb-4">                  
+                  <a href="ghexemphim.php" name="" id="" class="btn btn-dark text-white btn-addcart">Đặt vé ngay</a>                 
                 </div>
                 <div class="d-grid gap-2 mb-4">
                   <form action="" method="POST">
@@ -139,6 +140,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' and isset($_POST['cart'])){
                     <button type="submit" href="" name="" id="cart" class="btn btn-dark text-white btn-addcart"style="width:100%">Thêm vào giỏ hàng</button>
                   </form>
                 </div>
+                 <?php endif?>
               </div>
             </div>
           </div>
