@@ -24,7 +24,7 @@ class Movie extends DB{
         }
     }
     public function all(){
-        $cnt = "select * from movie";
+        $cnt = "select * from movie ";
         $stmt = $this->connect() -> prepare($cnt);
         $stmt -> execute([]);
         $list = array();
@@ -33,10 +33,16 @@ class Movie extends DB{
         }
         return $list;
     }
-    public function getMovieShowing(){
-        $cnt = "select * from movie where type = ?";
+    public function getMovieShowing($id){     
+        $type = 1;   
+        $limitPage = 3;
+        $skip = ((int)$id - 1)* $limitPage;
+        $cnt = 'select * from movie  where type = ? LIMIT ?,?';
         $stmt = $this->connect() -> prepare($cnt);
-        $stmt -> execute([1]);
+        $stmt-> bindParam(1,$type, PDO::PARAM_INT);
+        $stmt-> bindParam(2,$skip, PDO::PARAM_INT);
+        $stmt-> bindParam(3,$limitPage, PDO::PARAM_INT);
+        $stmt -> execute();
         $list = array();
         while($row = $stmt -> fetch()){
             array_push($list, $row);

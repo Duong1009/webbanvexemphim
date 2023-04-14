@@ -3,9 +3,9 @@ include '../controllers/connect.php';
 include '../partials/header.php';
 
 $movie = new Movie;
-$allMovieShowing = $movie -> getMovieShowing();
+$id = isset($_REQUEST['id']) ? filter_var($_REQUEST['id'], FILTER_SANITIZE_NUMBER_INT) : 1;
+$allMovieShowing = $movie -> getMovieShowing($id);
 $allMovieShowSoon = $movie -> getMovieShowSoon();
-
 ?>
 
   <main>
@@ -59,7 +59,19 @@ $allMovieShowSoon = $movie -> getMovieShowSoon();
           <?php endforeach?>        
         </div>
       </div>
-    </div>
+      <div class="container my-3">
+      <div class="row justify-content-center align-items-center">
+        <?php $len = round(count($allMovieShowing) / 3);?>
+        <?php for($i = 0; $i <= $len; $i++):?>
+          <?php if($id == $i + 1 ):?>
+            <a class="btn btn-dark m-2" href="trangchu.php?id=<?=$i + 1?>" style="width:50px"><?=$i + 1?></a>
+          <?php else: ?>
+            <a class="btn btn-light m-2" href="trangchu.php?id=<?=$i + 1?>" style="width:50px"><?=$i + 1?></a>
+          <?php endif ?>
+          <?php endfor ?>
+      </div>
+      </div>
+      </div>
     <!-- Phim sắp chiếu -->
     <div class="container-fluid">
       <div class="container courses-slogan mt-3">
