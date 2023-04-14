@@ -194,10 +194,14 @@ class User extends DB{
         $cnt = "SELECT username FROM user WHERE username = ? AND password = ?";
         $stmt = $this->connect() -> prepare($cnt);
         $stmt -> execute([$POST['username'], $POST['password1']]);
+        $count = 0;
         while ( $row = $stmt->fetch()){
-            if(!$row){
-                $this->error['check'] = "Tài khoản không tồn tại";
+            if($row){
+                $count ++;
             }
+        }
+        if($count == 0){
+            $this->error['check'] = "Tài khoản không tồn tại";
         }
         return $this->error;
 
