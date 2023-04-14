@@ -1,10 +1,10 @@
 <footer>
-    <!-- place footer here -->
-    <div class="container-fluid bg-dark text-white p-5">
-      <div class="row justify-content-center align-items-center g-1 w-50">
+    <!-- place footer here --> 
+    <div class="container-fluid bg-dark text-white p-5  text-center">
+      <!-- <div class="row "> -->
         Made by Hạ & Dương
         
-      </div>
+      <!-- </div> -->
     </div>
   </footer>
 </body>
