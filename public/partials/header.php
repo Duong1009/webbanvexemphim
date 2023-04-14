@@ -34,8 +34,8 @@
               </ul>
               <div class="col">
                 <?php if(!isset($_COOKIE["username"])):?>
-                <a href="dangky.php" class="btn btn-outline-dark me-2" id="signin">Đăng&nbspký</a>
-                <a href="dangnhap.php" class="btn btn-dark" id="login">Đăng&nbspNhập</a>
+                <a href="dangky.php" class="btn btn-outline-dark m-2" id="signin">Đăng&nbspký</a>
+                <a href="dangnhap.php" class="btn btn-dark m-2" id="login">Đăng&nbspNhập</a>
                 <?php else:?>
                   
                   <div class="nav-item dropdown">

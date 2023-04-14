@@ -45,7 +45,7 @@ class Movie extends DB{
         }
     }
     public function all(){
-        $cnt = "select * from movie ";
+        $cnt = "select * from movie where deleted = 0";
         $stmt = $this->connect() -> prepare($cnt);
         $stmt -> execute([]);
         $list = array();
@@ -58,7 +58,7 @@ class Movie extends DB{
         $type = 1;   
         $limitPage = 3;
         $skip = ((int)$id - 1)* $limitPage;
-        $cnt = 'select * from movie  where type = ? LIMIT ?,?';
+        $cnt = 'select * from movie  where deleted = 0 and type = ?   LIMIT ?,?';
         $stmt = $this->connect() -> prepare($cnt);
         $stmt-> bindParam(1,$type, PDO::PARAM_INT);
         $stmt-> bindParam(2,$skip, PDO::PARAM_INT);
@@ -75,7 +75,7 @@ class Movie extends DB{
         $type = 0;   
         $limitPage = 3;
         $skip = ((int)$id - 1)* $limitPage;
-        $cnt = "select * from movie where type = ? LIMIT ?,?";
+        $cnt = "select * from movie where deleted = 0  and type = ? LIMIT ?,?";
         $stmt = $this->connect() -> prepare($cnt);
         $stmt-> bindParam(1,$type, PDO::PARAM_INT);
         $stmt-> bindParam(2,$skip, PDO::PARAM_INT);
@@ -128,6 +128,39 @@ class Movie extends DB{
         $stmt->execute([$POST['title'],$POST['actor'],$POST['time'],$POST['year_release'],$POST['category'],$POST['country'],$POST['imgLink'],$POST['idVideoReview'], $POST['review'],$POST['type']]);
     }
 
+    public function getMovieDeleted(){
+        $cnt = "SELECT * FROM movie WHERE deleted = 1";
+        $stmt = $this->connect() -> prepare($cnt);
+        $stmt -> execute([]);
+        $list = array();
+        while($row = $stmt -> fetch()){
+            array_push($list, $row);
+        }
+        return $list;
+    }
+
+    public function countMovieDeleted(){
+        $cnt = "SELECT * FROM movie WHERE deleted = 1";
+        $stmt = $this->connect() -> prepare($cnt);
+        $stmt -> execute([]);
+        $count = 0;
+        while($row = $stmt -> fetch()){
+            $count += 1;
+        }
+        return $count;
+    }
+
+    public function undo($id){
+        $cnt = "UPDATE movie SET deleted = ? WHERE id = ?";
+        $stmt = $this->connect() -> prepare($cnt);
+        $stmt->execute([0,$id]);
+    }
+
+    public function deleteSorf($id){
+        $cnt = "UPDATE movie SET deleted = ? WHERE id = ?";
+        $stmt = $this->connect() -> prepare($cnt);
+        $stmt->execute([1,$id]);
+    }
     public function delete($id){
         $cnt = "DELETE FROM movie WHERE id = ?";
         $stmt = $this->connect() -> prepare($cnt);

@@ -1,13 +1,23 @@
 <?php include '../partials/header.php';
     include '../controllers/connect.php';
     $movie = new Movie;
+    function redirect($location)
+    {
+      header('Location: ' . $location);
+      exit();
+    }
     $movies = $movie->all();
+
+    $countMovieDeleted = $movie -> countMovieDeleted();
     if($_SERVER['REQUEST_METHOD'] == 'POST'){
-        $movie -> delete($_POST['id']);
-        header('fresh');
+        $movie -> deleteSorf($_POST['id']);
+        redirect('quanly.php');
     }
 ?>
 <div class="container mt-4">
+    <a href="thungrac.php" class="text-dark text-decoration-none">
+        <i class="fa fa-trash" aria-hidden="true"></i> <?= $countMovieDeleted?>
+    </a>
     <h1 class="text-center">Danh sách các bộ phim</h1>
 <table class="table">
   <thead>

@@ -2,55 +2,44 @@
     include '../partials/header.php';
     include '../controllers/connect.php';
 
-    $cart = new Cart;
     $movie = new Movie;
+    $moviesDeleted = $movie->getMovieDeleted();
     function redirect($location)
     {
       header('Location: ' . $location);
       exit();
     }
-    if(isset($_COOKIE['username'])){
-      $arr = $cart -> findCartFollowUsername($_COOKIE['username']);
-      if(count($arr) > 0){
-        $movies = $movie -> findFilm($arr);
-      }
-  
-    }    
-    
-    if($_SERVER['REQUEST_METHOD'] == 'POST'){
-      $id = $_POST['id'];
-      echo $id;
-      $cart -> deleteCart($id);
-      redirect('cart.php');
-    }
 
+    if($_SERVER['REQUEST_METHOD'] == 'GET' and isset($_REQUEST['id'])){
+        $movie -> undo($_REQUEST['id']);
+        redirect('thungrac.php');
+    }
+    if($_SERVER['REQUEST_METHOD'] == 'POST'){
+        $movie -> delete($_POST['id']);
+        redirect('thungrac.php');
+    }
 ?>
-<main>
-<?php if(isset($_COOKIE['username'])): ?>
-<h2 class="text-center mt-2">Giỏ hàng của <?=$_COOKIE['username']?></h2>
 
 <div class="container category-items mt-4">
         <div class="row justify-content-center align-items-center g-2">
-        <?php if(count($arr) > 0):?>
-        <?php foreach ($movies as $movie): ?>
+        <?php if(count($moviesDeleted) > 0):?>
+        <?php foreach ($moviesDeleted as $movie): ?>
           <div class="col-lg-3 col-md-6">
             <div class="container course-item" style="position: relative; width: 200px">      
             <button type="button" class="btn-close btn-close-white" data-bs-toggle="modal" data-bs-target="#confirm"
-            data-bs-whatever="<?=$movie['id']?>" style="float:right; position: absolute; top:0; right:0; "></button>
+            data-bs-whatever="<?=$movie['id']?>" style=" position: absolute; top:0; right:0; "></button>
+            <a href="thungrac.php?id=<?=$movie['id']?>" class="btn btn-dark"  style=" position: absolute; top:0; left:0; "><i class="fa fa-undo" aria-hidden="true"></i></a>
               <a href="chitiet.php?id=<?=$movie['id']?>" class="text-decoration-none text-dark">
                 <img src="<?=$movie['imgLink']?>" height="300">
                 <div class="container course-detail p-0 mt-3">
                   <h5 class="course-detail-title font-weight-bold text-center"><?=htmlspecialchars($movie['title'])?></h5>
-                </div>
-                <div class="d-grid gap-2 mb-4">                  
-                  <a href="ghexemphim.php" name="" id="" class="btn btn-dark text-white btn-addcart">Đặt vé ngay</a>                 
                 </div>
               </a>
             </div>
           </div>  
           <?php endforeach?>   
           <?php else: ?>
-            <h2 class="text-center">Giỏ hàng của bạn đang trống</h2>
+            <h2 class="text-center">Chưa có phim nào đã xoá</h2>
           <?php endif ?>     
         </div>
       </div>
@@ -63,7 +52,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    Bạn có chắc chắn muốn xoá
+                    Sau khi xoá phim này sẽ không thể khôi phục lại dc
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Huỷ</button>
@@ -95,7 +84,3 @@
             })
         })
     </script>
-  <?php else: ?>
-    <h2 class="text-center mt-3">Đăng nhập để xem giỏ hàng</h2>
-  <?php endif ?>
-</main>

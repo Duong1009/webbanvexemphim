@@ -9,9 +9,9 @@ include '../partials/header.php';
     <div class="col-1">
         <div class="numSeat">A</div>
         <div class="numSeat">B</div>
+        <div class="numSeat">C</div>
         <div class="numSeat">D</div>
         <div class="numSeat">E</div>
-        <div class="numSeat">F</div>
     </div>
     <div class="col-11">
         <div class="seats">
