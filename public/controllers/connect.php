@@ -15,6 +15,27 @@ class Movie extends DB{
     public $idVideoReview;
 	private $error = [];
 
+
+    public function countShowing(){
+        $cnt = "SELECT * FROM movie WHERE type = ?";
+        $stmt = $this->connect() -> prepare($cnt);
+        $stmt -> execute([1]);
+        $count = 0;
+        while($row = $stmt -> fetch()){
+            $count += 1;
+        }
+        return $count;
+    }
+    public function countSoon(){
+        $cnt = "SELECT * FROM movie WHERE type = ?";
+        $stmt = $this->connect() -> prepare($cnt);
+        $stmt -> execute([0]);
+        $count = 0;
+        while($row = $stmt -> fetch()){
+            $count += 1;
+        }
+        return $count;
+    }
     public function getMovie($id){
         $cnt = "select * from movie where id = ?";
         $stmt = $this->connect() -> prepare($cnt);
@@ -50,10 +71,16 @@ class Movie extends DB{
         return $list;
     }
 
-    public function getMovieShowSoon(){
-        $cnt = "select * from movie where type = ?";
+    public function getMovieShowSoon($id){
+        $type = 0;   
+        $limitPage = 3;
+        $skip = ((int)$id - 1)* $limitPage;
+        $cnt = "select * from movie where type = ? LIMIT ?,?";
         $stmt = $this->connect() -> prepare($cnt);
-        $stmt -> execute([0]);
+        $stmt-> bindParam(1,$type, PDO::PARAM_INT);
+        $stmt-> bindParam(2,$skip, PDO::PARAM_INT);
+        $stmt-> bindParam(3,$limitPage, PDO::PARAM_INT);
+        $stmt -> execute();
         $list = array();
         while($row = $stmt -> fetch()){
             array_push($list, $row);
