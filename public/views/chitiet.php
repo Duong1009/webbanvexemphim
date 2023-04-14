@@ -77,7 +77,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' and isset($_POST['cart'])){
                     <div class="comment mt-3">
                       <b> <?=$cmt['username']?></b> <?= $cmt['timeCreated']?>
                       <p style="margin-bottom: 0px"><?=$cmt['comment']?></p>
-                      <i class="fa fa-thumbs-o-up mx-2" id="like"><data value= <?=$cmt['id']?>></data></i> 
+                      <i class="fa fa-thumbs-o-up mx-2 like"><data value= <?=$cmt['id']?>></data></i> 
                       <?php 
                       $numLike = $comment -> countLike($cmt['id']);
                       if ($numLike > 0) :
@@ -85,7 +85,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' and isset($_POST['cart'])){
                       endif;
                       ?>
 
-                      <i class="fa fa-thumbs-o-down mx-2" id="dislike"><data value= <?=$cmt['id']?>></data></i> 
+                      <i class="fa fa-thumbs-o-down mx-2 dislike"><data value= <?=$cmt['id']?>></data></i> 
                       <?php 
                       $numDislike = $comment -> countDislike($cmt['id']);
                       if ($numDislike > 0) :
@@ -157,38 +157,43 @@ include '../partials/footer.php';
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 <script>
   $(document).ready(function() {
-    $('#like').click(function(){
-      let idComment = parseInt($('#like data').val(), 10)
-      console.log(typeof(idComment))
-      $.ajax({
-        type: "POST",
-        url:"like.php",
-        data: {idComment:idComment},
-        success: function(response) {
-					console.log(response);
-        }
-      }).done(function(){
-        location.reload();
+    let likes = document.querySelectorAll('.like')
+    likes.forEach(like => {
+      like.addEventListener('click',function(){
+        let idComment = parseInt($(this).children().val(), 10)
+        console.log(idComment)
+        $.ajax({
+          type: "POST",
+          url:"like.php",
+          data: {idComment:idComment},
+          success: function(response) {
+            console.log(response);
+          }
+        }).done(function(){
+          location.reload();
+        })
+        
       })
-      
     })
 
-    $('#dislike').click(function(){
-      let idComment = parseInt($('#dislike data').val(), 10)
-      console.log(typeof(idComment))
-      $.ajax({
-        type: "POST",
-        url:"dislike.php",
-        data: {idComment:idComment},
-        success: function(response) {
-					console.log(response);
-        }
-      }).done(function(){
-        location.reload();
+    let disLikes = document.querySelectorAll('.dislike')
+    disLikes.forEach(dislike => {
+      dislike.addEventListener('click',function(){
+        let idComment = parseInt($(this).children().val(), 10)
+        console.log(idComment)
+        $.ajax({
+          type: "POST",
+          url:"dislike.php",
+          data: {idComment:idComment},
+          success: function(response) {
+            console.log(response);
+          }
+        }).done(function(){
+          location.reload();
+        })
+        
       })
-      
     })
-
     $("#cart").click(function(){
       
     })
