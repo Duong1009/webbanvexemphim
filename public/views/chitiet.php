@@ -132,7 +132,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' and isset($_POST['cart'])){
                 </div>
                 <?php if(isset($_COOKIE['username'])):?>
                 <div class="d-grid gap-2 mb-4">                  
-                  <a href="ghexemphim.php" name="" id="" class="btn btn-dark text-white btn-addcart">Đặt vé ngay</a>                 
+                  <a href="diadiem.php?movie=<?=$movie['title']?>" name="" id="" class="btn btn-dark text-white btn-addcart">Đặt vé ngay</a>                 
                 </div>
                 <div class="d-grid gap-2 mb-4">
                   <form action="" method="POST">
