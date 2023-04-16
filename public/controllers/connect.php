@@ -323,6 +323,18 @@ class Comment extends DB{
         $stmt = $this->connect() -> prepare($cnt);
         $stmt -> execute([$count,$id]);
     }
+    public function delete($id){
+        $cnt = "DELETE FROM comment WHERE id = ? ";
+        $stmt = $this->connect() -> prepare($cnt);
+        $stmt -> execute([$id]);
+    }
+
+    public function update($id, $comment){
+        $cnt = "UPDATE comment SET comment = ? WHERE id = ? ";
+        $stmt = $this->connect() -> prepare($cnt);
+        $stmt -> execute([$comment,$id]);
+    }
+
 
 }
 
@@ -351,6 +363,7 @@ class Cart extends DB{
         $stmt -> execute([$id]);
     }
 
+   
 }
 
 ?>

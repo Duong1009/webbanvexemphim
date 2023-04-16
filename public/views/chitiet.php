@@ -28,6 +28,13 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' and isset($_POST['comment'])){
 if($_SERVER['REQUEST_METHOD'] == 'POST' and isset($_POST['cart'])){
   $cart -> addFilmToCart($id, $_COOKIE['username']);
 }
+
+if($_SERVER['REQUEST_METHOD'] == 'POST' and isset($_POST['suacomment'])){
+  $content = $_POST['suacomment'];
+  $idcomment = (int)$_POST['idcomment'];
+  $comment -> update($idcomment,$content);
+  redirect('chitiet.php?id='.$id);
+}
 ?>
 
 
@@ -76,7 +83,28 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' and isset($_POST['cart'])){
                   <?php foreach ($comments as $cmt): ?>
                     <div class="comment mt-3">
                       <b> <?=$cmt['username']?></b> <?= $cmt['timeCreated']?>
+                      <?php if($_COOKIE['username'] == 'admin' or $cmt['username'] == $_COOKIE['username'] ) :?>
+                        <span id='<?=$cmt['id']?>' class="text-dark xoacomment" > <i class="fa fa-trash" aria-hidden="true"></i></span>
+                        <?php endif ?>
+                        <?php if($cmt['username'] == $_COOKIE['username'] ) :?>
+                          <span class="text-dark"><i class="fa fa-pencil suacomment" aria-hidden="true">
+                          <form action="" method="POST" hidden class="formsua">
+                            <div class="row">
+                              <div class="col-11">
+                                <input type="text" value='<?=$cmt['comment']?>' style="width:650px; height:40px" name="suacomment" class="border border-dark rounded-pill p-2">
+                                <input type="text" value='<?=$cmt['id']?>' name="idcomment" hidden>
+                              </div>
+                              <div class="col-1">
+                               <button style="border:none; background-color: transparent" type="submit"><i class="fa fa-arrow-circle-right mt-2" style="font-size:24px"></i></button>
+                              </div>
+                              
+                            </div>
+                          
+                      </form>
+                          </i></span>
+                        <?php endif ?>
                       <p style="margin-bottom: 0px"><?=$cmt['comment']?></p>
+                      
                       <i class="fa fa-thumbs-o-up mx-2 like"><data value= <?=$cmt['id']?>></data></i> 
                       <?php 
                       $numLike = $comment -> countLike($cmt['id']);
@@ -156,50 +184,72 @@ include '../partials/footer.php';
 <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 <script>
-  $(document).ready(function() {
+  $(document).ready(function() {  
     let cookie = $.cookie('username')
     console.log(cookie)
     if(cookie){
-    let likes = document.querySelectorAll('.like')
-    likes.forEach(like => {
-      like.addEventListener('click',function(){
-        let idComment = parseInt($(this).children().val(), 10)
-        console.log(idComment)
-        $.ajax({
-          type: "POST",
-          url:"like.php",
-          data: {idComment:idComment},
-          success: function(response) {
-            console.log(response);
-          }
-        }).done(function(){
-          location.reload();
+      let likes = document.querySelectorAll('.like')
+      likes.forEach(like => {
+        like.addEventListener('click',function(){
+          let idComment = parseInt($(this).children().val(), 10)
+          console.log(idComment)
+          $.ajax({
+            type: "POST",
+            url:"like.php",
+            data: {idComment:idComment},
+            success: function(response) {
+              console.log(response);
+            }
+          }).done(function(){
+            location.reload();
+          })          
         })
-        
       })
-    })
-
-    let disLikes = document.querySelectorAll('.dislike')
-    disLikes.forEach(dislike => {
-      dislike.addEventListener('click',function(){
-        let idComment = parseInt($(this).children().val(), 10)
-        console.log(idComment)
-        $.ajax({
-          type: "POST",
-          url:"dislike.php",
-          data: {idComment:idComment},
-          success: function(response) {
-            console.log(response);
-          }
-        }).done(function(){
-          location.reload();
+      let disLikes = document.querySelectorAll('.dislike')
+      disLikes.forEach(dislike => {
+        dislike.addEventListener('click',function(){
+          let idComment = parseInt($(this).children().val(), 10)
+          console.log(idComment)
+          $.ajax({
+            type: "POST",
+            url:"dislike.php",
+            data: {idComment:idComment},
+            success: function(response) {
+              console.log(response);
+            }
+          }).done(function(){
+            location.reload();
+          })
+          
         })
-        
-      })
-    })
-    $("#cart").click(function(){
-      
-    })
+      })    
   }
+
+  let xoacomment = document.querySelectorAll('.xoacomment')
+  xoacomment.forEach(xoa => {
+    xoa.addEventListener('click', function(){
+      let id = this.id
+      console.log(id)
+      $.ajax({
+        type: 'POST',
+        url: "xoacomment.php",
+        data: {id:id},
+        success: function(response) {
+            console.log(response)
+          }
+      }).done(function(){
+          location.reload()
+      })
+    })
   })
+
+  let suacomment = document.querySelectorAll('.suacomment')
+  suacomment.forEach(sua => {
+    sua.addEventListener('click', function(){
+      let form = this.querySelector('.formsua')
+      form.removeAttribute('hidden')
+    })
+  })
+
+})
 </script>
