@@ -45,7 +45,7 @@
         </div>
         <div class="col-3">
             <label for="year_release"><b>Năm phát hành:</b></label>
-            <input type="text" class="form-control border border-dark rounded-pill" placeholder="Nhập vào năm phát hành" aria-label="year_release" id="year_release" name="year_release">
+            <input type="text" class="form-control border border-dark rounded-pill" placeholder="Nhập vào năm phát hành phim phim" aria-label="year_release" id="year_release" name="year_release">
             <?php if(isset($error['year_release'])): ?>
               <span class="help-block text-danger">
 					<strong><?= htmlspecialchars($error['year_release']) ?></strong>
@@ -97,7 +97,7 @@
         <div class="row mt-2">
             <div class="col">
                 <label for="imgLink"><b>Link poster:</b></label>
-                <input type="text" class="form-control border border-dark rounded-pill" placeholder="Nhập vào id của video review" aria-label="imgLink" id="imgLink" name="imgLink">
+                <input type="text" class="form-control border border-dark rounded-pill" placeholder="Nhập vào link của poster" aria-label="imgLink" id="imgLink" name="imgLink">
                 <?php if(isset($error['imgLink'])): ?>
                 <span class="help-block text-danger">
                         <strong><?= htmlspecialchars($error['imgLink']) ?></strong>
