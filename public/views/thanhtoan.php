@@ -11,6 +11,7 @@
    $movie = $_REQUEST['movie'];
    
 ?>
+
 <?php if(isset($_COOKIE['username'])):?>
 <div class="container mt-3">
     <h2 class="text-center">Thông tin đơn hàng của bạn</h2>
@@ -41,3 +42,4 @@
         }
     })
 </script>
+

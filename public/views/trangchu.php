@@ -87,7 +87,7 @@ $lenSoon = $movie -> countSoon();
         <?php foreach ($allMovieShowSoon as $movie): ?>
           <div class="col-lg-3 col-md-6">
             <div class="container course-item">
-              <a href="chitiet.php?id=<?=$movie['id']?>" class="text-decoration-none text-dark">
+              <a href="chitiet.php?id=<?=$movie['id']?>&soon=1" class="text-decoration-none text-dark">
                 <img src="<?=$movie['imgLink']?>" width="270" height="400">  <!--poster phim-->
                 <div class="container course-detail p-0 mt-3">
                   <h6 class="course-detail-title font-weight-bold"><?=htmlspecialchars($movie['title'])?></h6>
