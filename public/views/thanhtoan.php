@@ -25,7 +25,7 @@
     <input type="text" class="dis" value='<?=$district?>' hidden >
     <input type="text" class="wards" value='<?=$wards?>' hidden >
 
-    <button class="btn btn-dark"> Thanh Toán</button>
+    <button class="btn btn-dark pay" style="width:200px"> Thanh Toán</button>
     </div>
 </div>
 <?php endif?>
@@ -39,7 +39,10 @@
             let numWard =  $('.wards').val()
             let text = data[numProv].districts[numDis].wards[numWard].name + ' ' + data[numProv].districts[numDis].name + ' ' +  data[numProv].name 
             $('.place').text(text)
-        }
+        } 
+      })
+    $('.pay').click(function(){
+            alert("Thanh toán thành công")
     })
 </script>
 
