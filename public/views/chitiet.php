@@ -157,7 +157,8 @@ include '../partials/footer.php';
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 <script>
   $(document).ready(function() {
-    let cookie = Cookies.get('username')
+    let cookie = $.cookie('username')
+    console.log(cookie)
     if(cookie){
     let likes = document.querySelectorAll('.like')
     likes.forEach(like => {
