@@ -9,6 +9,9 @@
     }
 ?>
 <div class="container mt-3">
+    <?php if(isset($error['checkAlready'])):?>
+        <h2 class="text-center text-danger"><?=$error['checkAlready']?></h2>
+    <?php endif ?>
 <form method="POST">
     <div class="row">
         <div class="col">
@@ -42,7 +45,7 @@
         </div>
         <div class="col-3">
             <label for="year_release"><b>Năm phát hành:</b></label>
-            <input type="text" class="form-control border border-dark rounded-pill" placeholder="Nhập vào thời lượng phim" aria-label="year_release" id="year_release" name="year_release">
+            <input type="text" class="form-control border border-dark rounded-pill" placeholder="Nhập vào năm phát hành" aria-label="year_release" id="year_release" name="year_release">
             <?php if(isset($error['year_release'])): ?>
               <span class="help-block text-danger">
 					<strong><?= htmlspecialchars($error['year_release']) ?></strong>

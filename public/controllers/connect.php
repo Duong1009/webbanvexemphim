@@ -119,6 +119,19 @@ class Movie extends DB{
         if($POST['review'] == ''){
             $this->error['review'] = 'Review phim được yêu cầu';
         }
+        $cnt = "SELECT * FROM movie WHERE title = ?";
+        $stmt = $this -> connect() ->prepare($cnt);
+        $stmt -> execute([$POST['title']]);
+
+        $count = 0;
+        while ($row = $stmt ->fetch()){
+            if($row){
+                $count += 1;
+            }
+        }
+        if($count > 0){
+            $this->error['checkAlready'] = "Phim đã tồn tại";
+        }
         return $this->error;
     }
 

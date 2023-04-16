@@ -12,7 +12,7 @@
 ?>
 
 
-<div class="container mt-5">
+<div class="container mt-5" style="height:330px">
     <h2 class="text-center">Chọn thời gian và địa điểm</h2>
     <form action="" class="mt-5" method="POST">
         <div class="row">
@@ -74,3 +74,6 @@
         })       
     }})
 </script>
+<?php
+include '../partials/footer.php';
+?>
