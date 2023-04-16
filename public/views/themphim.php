@@ -94,7 +94,7 @@
         <div class="row mt-2">
             <div class="col">
                 <label for="imgLink"><b>Link poster:</b></label>
-                <input type="text" class="form-control border border-dark rounded-pill" placeholder="Nhập vào id của video review" aria-label="imgLink" id="imgLink" name="imgLink">
+                <input type="text" class="form-control border border-dark rounded-pill" placeholder="Nhập vào link của poster" aria-label="imgLink" id="imgLink" name="imgLink">
                 <?php if(isset($error['imgLink'])): ?>
                 <span class="help-block text-danger">
                         <strong><?= htmlspecialchars($error['imgLink']) ?></strong>
