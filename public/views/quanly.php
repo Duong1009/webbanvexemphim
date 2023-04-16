@@ -36,7 +36,7 @@
       <td><?= htmlspecialchars($movie1['type'])?></td>
       <td>
         <a href="chinhsua.php?id=<?=$movie1['id']?>" class="btn btn-dark"> Sửa</a>
-        <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#confirm"
+        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirm"
             data-bs-whatever="<?=$movie1['id']?>">Xoá</button>
       </td>
     </tr>
