@@ -23,7 +23,6 @@
       $cart -> deleteCart($id);
       redirect('cart.php');
     }
-
 ?>
 <main>
 <?php if(isset($_COOKIE['username'])): ?>
